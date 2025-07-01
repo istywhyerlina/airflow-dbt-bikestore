@@ -1,0 +1,5 @@
+/setup/monitoring_setup/.env
+/setup/postgres_dwh/.env
+/setup/postgres_src/.env
+/setup/airflow/.env
+/setup/logging_setup/.env

@@ -1,0 +1,29 @@
+version: '1'
+services:  
+  bikes-store-db:
+    image: postgres:latest
+    container_name: sources
+    environment:
+      POSTGRES_USER: ${SOURCE_DB_USER}
+      POSTGRES_PASSWORD: ${SOURCE_DB_PASSWORD}
+      POSTGRES_DB: ${SOURCE_DB_NAME}
+    ports:
+      - 5433:5432
+    volumes:
+      - ./init/:/docker-entrypoint-initdb.d
+      - bikes-store-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${SOURCE_DB_USER}"]
+      interval: 5s
+    restart: always
+    networks:
+      - airflow-networks
+
+volumes:
+  bikes-store-db:
+    driver: local
+    name: bikes-store-db
+
+networks:
+  airflow-networks:
+    external: True

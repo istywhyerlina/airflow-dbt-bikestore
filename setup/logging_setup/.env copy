@@ -1,0 +1,4 @@
+MINIO_ROOT_USER=
+MINIO_ROOT_PASSWORD=
+LOGS_BUCKET=airflow-logs
+STG_BUCKET=bikes-store
