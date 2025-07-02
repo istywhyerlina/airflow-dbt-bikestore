@@ -75,10 +75,14 @@ Before importing variables, we need to set up the slack-notifier with SLACK. Ste
 - Copy Bot User OAuth Token variabe files
 
 ## Screenshot of Task
+- Run DAG
 ![RUN1](png/run1.png)
 ![RUN2](png/run2.png)
+- Logs in Minio
 ![LOGS](png/logs.png)
+- Monitoring AIrflow with Grafana
 ![MONITORING](png/monitoring.png)
+- Slack Notifier
 ![SLACK NOTIFIER](png/notifier.png)
 
 
