@@ -64,7 +64,7 @@ class Extract:
             AirflowSkipException: If no new data is found.
         """
         try:
-
+            print("--------------Extracting data from API------------------")
             url_api=Variable.get('BIKES_STORE_API_URL')
             print(f"--------------URL API: {url_api} ------------------")
             response = requests.get(

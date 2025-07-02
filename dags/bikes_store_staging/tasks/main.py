@@ -26,7 +26,7 @@ def extract_db(incremental):
 
         current_task
         
-@task
+@task_group
 def extract_api():
     extract = PythonOperator(
         task_id = 'extract_api',
@@ -59,7 +59,7 @@ def load_db(incremental):
 
         previous_task = current_task
 
-@task
+@task_group
 def load_api():
         table_name ='currency'
         table_pkey='currencycode'

@@ -20,7 +20,7 @@ default_args = {
     'on_failure_callback': send_slack_notification(
         slack_conn_id="slack_conn",
         channel="airflow-notifications",
-        text="There is an ERROR")}
+        text="There is an ERROR in DAG bikes_store_warehouse_dbt")}
 
 DBT_PROJECT_PATH = f"{os.environ['AIRFLOW_HOME']}/dags/bikes_store_warehouse/bikes_store_warehouse_dbt"
 
@@ -58,7 +58,7 @@ render_config_init=RenderConfig(
 @dag(
     dag_id='bikes_store_warehouse',
     description='Extract data and load into warehouse area',
-    start_date=datetime(2025, 1, 7),
+    start_date=datetime(2024, 1, 9),
     schedule=None,
     default_args=default_args
 )

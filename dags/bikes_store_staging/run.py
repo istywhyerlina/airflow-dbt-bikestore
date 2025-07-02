@@ -15,13 +15,14 @@ default_args = {
     'on_failure_callback': send_slack_notification(
         slack_conn_id="slack_conn",
         channel="airflow-notifications",
-        text="There is an ERROR")}
+        text="There is an ERROR on the DAG bikes_store_staging")}
 
 @dag(
     dag_id='bikes_store_staging',
     description='Extract data and load into staging area',
-    start_date=datetime(2025, 1, 7),
-    schedule="@once",
+    start_date=datetime(2024, 9, 1),
+    schedule="@daily",
+    max_active_runs = 1,
     default_args=default_args
 )
 
