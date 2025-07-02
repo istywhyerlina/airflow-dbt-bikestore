@@ -27,25 +27,25 @@ Flow of Data Pipeline tasks that would be performed are:
 There are 2 DAG's:
 - bikes_store_staging
 ![DAG Staging ](png/dag_stg.png)
-This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups: Extract  >> Load >> Trigger DAG Data Warehouse. 
+  This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups: Extract  >> Load >> Trigger DAG Data Warehouse. 
   - Extract Task Groups
     Consists 2 Task Groups: 
       - Extract from postgres database: extracting data from the transaction database and be saved as a csv file in MinIO (bikes-store bucket). The data extraction process can be done incrementally (daily) or not and run in parallel (simultaneously).
       - Extract from API: extracting data from API and be saved as a csv file in MinIO (bikes-store bucket). The data extraction process can not be done incrementally (daily)
   - Load Task Groups:  loading data from the API that has been stored as a csv file in MinIO (bikes-store bucket) to the staging schema in the warehouse. Loading process of the data can pe processes incrementally, except for data currency.csv (from API) can not be done incrementally.
   - Trigger DAG run Task: Trigger the bikes_store_datawarehouse to run
-All the Task(s) have outlets (store information where the data is stored)
-![DAG Staging ](png/dag_stg1.png)
+  All the Task(s) have outlets (store information where the data is stored)
+  ![DAG Staging ](png/dag_stg1.png)
 
 - bikes_store_datawarehouse
 This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups:
-![DAG Warehouse ](png/dag_dwh1.png)
+  ![DAG Warehouse ](png/dag_dwh1.png)
 
   - check_is_warehouse_init: This is a task branch, to check a variable, before continuing to next TaskGroups. If the variable is True, the process continue to init_warehouse task groups, the warehouse_pipeline will be skipped, and vice versa
   - init_warehouse: Task using dbt for transforming data to datawarehouse. If variable is_init True, this task group would be run. 
   - warehouse_pipeline: Task using dbt for transforming data to datawarehouse. If variable is_init False, this task group would be run. This task excluding task seed on dbt. 
-All the Task(s) have outlets (store information where the data is stored)
-![Example DAG Warehouse ](png/example_of_dag_dwh.png)
+  All the Task(s) have outlets (store information where the data is stored)
+  ![Example DAG Warehouse ](png/example_of_dag_dwh.png)
 
 
 ## How to use this project? (preparations)
@@ -76,14 +76,14 @@ Before importing variables, we need to set up the slack-notifier with SLACK. Ste
 
 ## Screenshot of Task
 - Run DAG
-![RUN1](png/run1.png)
-![RUN2](png/run2.png)
+  ![RUN1](png/run1.png)
+  ![RUN2](png/run2.png)
 - Logs in Minio
-![LOGS](png/logs.png)
+  ![LOGS](png/logs.png)
 - Monitoring AIrflow with Grafana
-![MONITORING](png/monitoring.png)
+  ![MONITORING](png/monitoring.png)
 - Slack Notifier
-![SLACK NOTIFIER](png/notifier.png)
+  ![SLACK NOTIFIER](png/notifier.png)
 
 
 
