@@ -26,7 +26,9 @@ Flow of Data Pipeline tasks that would be performed are:
 
 There are 2 DAG's:
 - bikes_store_staging
-![DAG Staging ](png/dag_stg.png)
+
+  ![DAG Staging ](png/dag_stg.png)
+  
   This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups: Extract  >> Load >> Trigger DAG Data Warehouse. 
   - Extract Task Groups
     Consists 2 Task Groups: 
@@ -35,10 +37,12 @@ There are 2 DAG's:
   - Load Task Groups:  loading data from the API that has been stored as a csv file in MinIO (bikes-store bucket) to the staging schema in the warehouse. Loading process of the data can pe processes incrementally, except for data currency.csv (from API) can not be done incrementally.
   - Trigger DAG run Task: Trigger the bikes_store_datawarehouse to run
   All the Task(s) have outlets (store information where the data is stored)
+  
   ![DAG Staging ](png/dag_stg1.png)
 
 - bikes_store_datawarehouse
-This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups:
+  This DAG explain process extracting and loading to Data Staging. There are 3 main taskgroups:
+  
   ![DAG Warehouse ](png/dag_dwh1.png)
 
   - check_is_warehouse_init: This is a task branch, to check a variable, before continuing to next TaskGroups. If the variable is True, the process continue to init_warehouse task groups, the warehouse_pipeline will be skipped, and vice versa
